@@ -16,7 +16,8 @@ md () { mkdir -p "$1" && cd -P "$1"; };
 
 # Git
 alias gst="git status --show-stash"
-alias glol="git log --oneline --decorate --graph"
+alias gl="git log --oneline --decorate --graph"
+alias gd="git diff"
 alias ga="git add"
 alias gc="git commit -v"
 alias gac="git add -A && git commit -v"
