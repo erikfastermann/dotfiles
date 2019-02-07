@@ -17,6 +17,9 @@ PROMPT='%B%n%b@%m %F{green}%~%f $(git_status)%# '
 # Auto cd
 setopt auto_cd
 
+# Comments in shell
+setopt interactivecomments
+
 
 # Plugins
 # Autosuggestions

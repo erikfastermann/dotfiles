@@ -8,6 +8,7 @@ HISTFILE=~/.bash_history
 
 # Aliases
 # File Ops
+alias ls='ls --color'
 alias l="ls -l"
 alias la="ls -lA"
 alias -- -='cd -'
@@ -19,6 +20,7 @@ alias glol="git log --oneline --decorate --graph"
 alias ga="git add"
 alias gc="git commit -v"
 alias gac="git add -A && git commit -v"
+alias gacp="git add -A && git commit -v && git push"
 alias gb="git branch"
 alias gco="git checkout"
 alias gm="git merge --no-ff"
