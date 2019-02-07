@@ -8,10 +8,10 @@ HISTFILE=~/.bash_history
 
 # Aliases
 # File Ops
-alias ls='ls --color'
+alias ls="ls --color"
 alias l="ls -l"
 alias la="ls -lA"
-alias -- -='cd -'
+alias -- -="cd -"
 md () { mkdir -p "$1" && cd -P "$1"; };
 
 # Git
