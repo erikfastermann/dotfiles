@@ -1,7 +1,7 @@
 # Initial Setup
 export EDITOR=vim
 
-# Infinite History
+# History
 SAVEHIST=1000
 HISTFILE=~/.bash_history
 
