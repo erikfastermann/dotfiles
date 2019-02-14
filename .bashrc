@@ -27,17 +27,36 @@ md () { mkdir -p "$1" && cd -P "$1"; };
 
 
 # Git
+# Bash completion
+source /etc/bash_completion.d/git-completion.bash
+
 alias gst="git status --show-stash"
 alias gl="git log --oneline --graph --all"
-alias gll="git log --graph --pretty=format:'%C(auto)%h%d %Cblue(%an %ar)%Creset %s'"
+alias gll="git log --graph --all --pretty=format:'%C(auto)%h%d %Cblue(%an %ar)%Creset %s'"
+
 alias gd="git diff"
+__git_complete gd _git_diff
+
 alias ga="git add"
+__git_complete ga _git_add
+
 alias gc="git commit -v"
+__git_complete gc _git_commit
+
 alias gac="git add -A && git commit -v"
 alias gacp="git add -A && git commit -v && git push"
+
 alias gb="git branch"
+__git_complete gb _git_branch
+
 alias gco="git checkout"
+__git_complete gco _git_checkout
+
 alias gm="git merge"
+__git_complete gm _git_merge
+
+alias gr="git reset"
+__git_complete gr _git_reset
 
 # Save current work to branch and push
 gwip () {
