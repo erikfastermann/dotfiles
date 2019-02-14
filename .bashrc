@@ -15,13 +15,16 @@ SAVEHIST=1000
 HISTFILE=~/.bash_history
 
 
-# Aliases
 # File Ops
 alias ls="ls --color"
 alias l="ls -l"
-alias la="ls -lA"
+alias ll="ls -lA"
+
+shopt -s autocd
 alias -- -="cd -"
+
 md () { mkdir -p "$1" && cd -P "$1"; };
+
 
 # Git
 alias gst="git status --show-stash"
