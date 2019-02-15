@@ -80,3 +80,14 @@ gresume () {
 }
 
 
+# Select a comment from a file in the useful-commands folder with fzf,
+# then get an editor at the line of the comment
+useful_commands_path="${HOME}/useful-commands"
+sc () {
+    selected_comment=$(find ${useful_commands_path}/* -type f | xargs grep -n -H "^#" | fzf)
+    if [[ "$selected_comment" ]]; then
+        selected_path=$(echo "$selected_comment" | cut -d ':' -f1) && \
+        selected_line_number=$(echo "$selected_comment" | cut -d ':' -f2) && \
+        "$EDITOR" "$selected_path" +"${selected_line_number}" -c 'normal zt'
+    fi
+}
