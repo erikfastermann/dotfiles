@@ -69,7 +69,7 @@ gall () {
 # USAGE: git-upstream dir args...
 gupstream () {
     local exec_command="${@:2}"
-    git-all "$1" "if [[ \"\$(git rev-list --left-right @...@{upstream} 2> /dev/null)\" ]]; then $exec_command; fi"
+    gall "$1" "if [[ \"\$(git rev-list --left-right @...@{upstream} 2> /dev/null)\" ]]; then $exec_command; fi"
 }
 
 # Save current work to branch and push
