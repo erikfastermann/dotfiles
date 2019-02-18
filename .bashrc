@@ -31,6 +31,8 @@ md () { mkdir -p "$1" && cd -P "$1"; };
 source /etc/bash_completion.d/git-completion.bash
 
 alias gst="git status --show-stash"
+__git_complete gst _git_status
+
 alias gl="git log --oneline --graph --all"
 alias gll="git log --graph --all --pretty=format:'%C(auto)%h%d %Cblue(%an %ar)%Creset %s'"
 
@@ -80,12 +82,14 @@ gresume () {
 }
 
 
-# Select a line from a file in the useful-commands folder with fzf,
-# then an editor opens at the line of the comment
-useful_commands_path="${HOME}/useful-commands"
-sc () {
-    local selected_comment=$(find ${useful_commands_path}/* -type f | xargs grep -n -H . | sed "s+${useful_commands_path}++" | fzf) && \
-    local selected_path=$(echo "${useful_commands_path}${selected_comment}" | cut -d ':' -f1) && \
-    local selected_line_number=$(echo "$selected_comment" | cut -d ':' -f2) && \
+# Select a line from a file in a chosen folder with fzf,
+# then an editor opens at the specified line
+s () {
+    local selected_line=$(find ${1}/* -type f | xargs grep -n -H . | sed "s+${1}++" | fzf) && \
+    local selected_path=$(echo "${1}${selected_line}" | cut -d ':' -f1) && \
+    local selected_line_number=$(echo "$selected_line" | cut -d ':' -f2) && \
     "$EDITOR" "$selected_path" +"${selected_line_number}" -c 'normal z.'
 }
+
+USEFUL_COMMANDS_PATH="${HOME}/useful-commands"
+alias uc='s "$USEFUL_COMMANDS_PATH"'
