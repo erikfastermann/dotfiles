@@ -60,7 +60,7 @@ __git_complete gr _git_reset
 
 # Save current work to branch and push
 gwip () {
-    wip_branch="WIP-$(git branch | grep \* | cut -d ' ' -f2)" && \
+    local wip_branch="WIP-$(git branch | grep \* | cut -d ' ' -f2)" && \
     git checkout -b "$wip_branch" && \
     git add -A && git commit -m "$(date '+%F %T')" && \
     git push origin "$wip_branch"
@@ -69,10 +69,10 @@ gwip () {
 # Cherry-pick -n latest commit from pulled WIP-branch
 # and delete this branch local and remote
 gresume () {
-    current_branch="$(git branch | grep \* | cut -d ' ' -f2)" && \
+    local current_branch="$(git branch | grep \* | cut -d ' ' -f2)" && \
     git pull && \
     git checkout "WIP-$current_branch"
-    last_commit=$(git log "WIP-$current_branch" -n1 --pretty=format:"%H" --) && \
+    local last_commit=$(git log "WIP-$current_branch" -n1 --pretty=format:"%H" --) && \
     git checkout "$current_branch" && \
     git cherry-pick -n "$last_commit" && \
     git branch -D "WIP-$current_branch" && \
@@ -84,8 +84,8 @@ gresume () {
 # then an editor opens at the line of the comment
 useful_commands_path="${HOME}/useful-commands"
 sc () {
-    selected_comment=$(find ${useful_commands_path}/* -type f | xargs grep -n -H . | sed "s+${useful_commands_path}++" | fzf) && \
-    selected_path=$(echo "${useful_commands_path}${selected_comment}" | cut -d ':' -f1) && \
-    selected_line_number=$(echo "$selected_comment" | cut -d ':' -f2) && \
-    "$EDITOR" "$selected_path" +"${selected_line_number}" -c 'normal zt'
+    local selected_comment=$(find ${useful_commands_path}/* -type f | xargs grep -n -H . | sed "s+${useful_commands_path}++" | fzf) && \
+    local selected_path=$(echo "${useful_commands_path}${selected_comment}" | cut -d ':' -f1) && \
+    local selected_line_number=$(echo "$selected_comment" | cut -d ':' -f2) && \
+    "$EDITOR" "$selected_path" +"${selected_line_number}" -c 'normal z.'
 }
