@@ -58,6 +58,20 @@ __git_complete gm _git_merge
 alias gr="git reset"
 __git_complete gr _git_reset
 
+# Execute commands on all non bare repositories from a folder
+# USAGE: git-all dir args...
+gall () {
+    local exec_command="${@:2}"
+    find "$1" -name .git -type d -execdir bash -c "$exec_command" \;
+}
+
+# Execute commands on all non bare repositories with differences from upstream from a folder
+# USAGE: git-upstream dir args...
+gupstream () {
+    local exec_command="${@:2}"
+    git-all "$1" "if [[ \"\$(git rev-list --left-right @...@{upstream} 2> /dev/null)\" ]]; then $exec_command; fi"
+}
+
 # Save current work to branch and push
 gwip () {
     local wip_branch="WIP-$(git branch | grep \* | cut -d ' ' -f2)" && \
