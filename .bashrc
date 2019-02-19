@@ -60,6 +60,18 @@ __git_complete gm _git_merge
 alias gr="git reset"
 __git_complete gr _git_reset
 
+# Browse commits for a specific file, view commit in $EDITOR
+gbrowse () {
+    local git_folder="$1"
+    while local git_file="$(git -C $git_folder log --follow --diff-filter=A --pretty=format: --name-only . \
+        | grep . | fzf)"; [[ "$git_file" ]]; do
+        while local git_commit="$(git -C $git_folder log --follow --pretty=format:'%C(auto)%h %Cblue(%an %ar)%Creset %s' \
+            -- $git_file | fzf | cut -c1-7)"; [[ "$git_commit" ]]; do
+            git -C "$git_folder" show "${git_commit}:${git_file}" | "$EDITOR"
+        done
+    done
+}
+
 # Save current work to branch and push
 gwip () {
     local wip_branch="WIP-$(git branch | grep \* | cut -d ' ' -f2)" && \
