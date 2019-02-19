@@ -125,3 +125,8 @@ s () {
 
 USEFUL_COMMANDS_PATH="${HOME}/useful-commands"
 alias uc='s "$USEFUL_COMMANDS_PATH"'
+
+
+# Notes
+source ~/dotfiles/notes-completion.bash
+n () { ( if [[ "$(pwd)" != "$HOME/notes"* ]]; then cd /home/erik/notes; fi; "$@" ) }
