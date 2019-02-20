@@ -98,11 +98,14 @@ alias gfa='gall "$HOME" echo \&\& pwd \&\& git fetch --all; echo -----------;gup
 # USAGE: gbrowse dir
 gbrowse () {
     local git_folder="$1"
+    if [[ "$git_folder" == "" ]]; then
+        git_folder="."
+    fi
     while local git_file="$(git -C $git_folder log --follow --diff-filter=A --pretty=format: --name-only . \
         | grep . | fzf)"; [[ "$git_file" ]]; do
         while local git_commit="$(git -C $git_folder log --follow --pretty=format:'%C(auto)%h %Cblue(%an %ar)%Creset %s' \
             -- $git_file | fzf | cut -c1-7)"; [[ "$git_commit" ]]; do
-            git -C "$git_folder" show "${git_commit}:${git_file}" | "$EDITOR"
+            git -C "$git_folder" show "${git_commit}:${git_file}" | "$EDITOR" "$git_file"
         done
     done
 }
