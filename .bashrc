@@ -128,5 +128,7 @@ alias uc='s "$USEFUL_COMMANDS_PATH"'
 
 
 # Notes
+NOTES_PATH="$HOME/notes"
+
 source ~/dotfiles/notes-completion.bash
-n () { ( if [[ "$(pwd)" != "$HOME/notes"* ]]; then cd /home/erik/notes; fi; "$@" ) }
+alias n=
