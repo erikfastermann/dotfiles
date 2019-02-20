@@ -34,7 +34,7 @@ parse_status () {
 
     while read -r line; do
         local status_code="$(echo $line | cut -d ' ' -f1)"
-        local file_name="$(echo $line | cut -d ' ' -f2)"
+        local file_name="$(echo $line | cut -d ' ' -f2-)"
 
         case "$status_code" in
             "??")
@@ -78,9 +78,9 @@ create_commit () {
     create_msg cur_deleted[@] "$git_deleted"
     create_msg cur_renamed[@] "$git_renamed"
     create_msg cur_copied[@] "$git_copied"
-    full_commit_msg="${full_commit_msg::-1}"
+    full_commit_msg="[AUTO] ${full_commit_msg::-1}"
 
-    git -C "$git_repo" add -A && git -C "$git_repo" commit -em "$full_commit_msg"
+    git -C "$git_repo" add -A && git -C "$git_repo" commit -m "$full_commit_msg"
 }
 
 
