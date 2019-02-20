@@ -147,5 +147,6 @@ sl () {
     fi
 }
 
+# Search-line for useful-commands
 USEFUL_COMMANDS_PATH="${HOME}/useful-commands"
 alias uc='sl "$USEFUL_COMMANDS_PATH"'
