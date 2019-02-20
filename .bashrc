@@ -63,19 +63,36 @@ __git_complete gr _git_reset
 # Execute commands on all non bare repositories from a folder
 # USAGE: gall dir args...
 gall () {
+    local find_dir="$1"
+    if [[ "$find_dir" == "" ]]; then
+        find_dir="$HOME"
+    fi
     local exec_command="${@:2}"
-    find "$1" -name .git -type d -execdir bash -c "$exec_command" \;
+    if [[ "$exec_command" == "" ]]; then
+        exec_command="pwd"
+    fi
+    find "$find_dir" -name .git -type d -execdir bash -c "$exec_command" \;
 }
 
 # Execute commands on all non bare repositories with differences from upstream from a folder
-# USAGE: gupstream dir args...
-gupstream () {
+# USAGE: gup dir args...
+gup () {
+    local find_dir="$1"
+    if [[ "$find_dir" == "" ]]; then
+        find_dir="$HOME"
+    fi
     local exec_command="${@:2}"
-    gall "$1" "if [[ \"\$(git rev-list --left-right @...@{upstream} 2> /dev/null)\" ]]; then $exec_command; fi"
+    if [[ "$exec_command" == "" ]]; then
+        exec_command="pwd"
+    fi
+    gall "$find_dir" "if [[ \"\$(git rev-list --left-right @...@{upstream} 2> /dev/null)\" ]]; then $exec_command; fi"
 }
 
+# Show status for all dirty repos in the HOME folder
+alias gsta='gall "$HOME" "if [[ \$(git status --porcelain) ]]; then pwd && git status --short --branch && echo; fi;"'
+
 # Fetch all repos in the HOME folder and show repos with differences from upstream
-alias gfa="gall $HOME git fetch --all; gupstream $HOME echo \&\& pwd \&\& git status --short --branch"
+alias gfa='gall "$HOME" echo \&\& pwd \&\& git fetch --all; echo -----------;gup "$HOME" echo \&\& pwd \&\& git status --short --branch'
 
 # Browse commits for a specific file, view commit in $EDITOR
 # USAGE: gbrowse dir
