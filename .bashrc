@@ -150,3 +150,10 @@ sl () {
 # Search-line for useful-commands
 USEFUL_COMMANDS_PATH="${HOME}/useful-commands"
 alias uc='sl "$USEFUL_COMMANDS_PATH"'
+
+
+# Notes
+NOTES_PATH="$HOME/notes"
+
+source ~/dotfiles/notes-completion.bash
+alias n=
