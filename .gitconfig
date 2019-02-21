@@ -1,0 +1,5 @@
+[user]
+	name = Erik Fastermann
+	email = erik@fastermann.de
+[core]
+	pager = less -+FX

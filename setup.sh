@@ -15,3 +15,5 @@ sudo curl -L https://raw.githubusercontent.com/git/git/master/contrib/completion
 mkdir -p ~/.config/nvim/
 echo "so ${dotfiles_dir}/.vimrc" >> ~/.config/nvim/init.vim
 
+# Gitconfig
+ln -sf "${dotfiles_dir}/.gitconfig" "${HOME}/.gitconfig"
