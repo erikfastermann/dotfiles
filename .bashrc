@@ -46,6 +46,13 @@ alias .b="$EDITOR ${DOTFILES_PATH}/.bashrc"
 alias .v="$EDITOR ${DOTFILES_PATH}/.vimrc"
 alias .p="$EDITOR ${DOTFILES_PATH}/programs.apt"
 
+
+# Apt
+alias sai="sudo apt-get update && sudo apt-get install"
+alias sau="sudo apt-get update && sudo apt-get upgrade -y"
+
+
+# Git
 alias gst="git status --show-stash --untracked"
 __git_complete gst _git_status
 
@@ -84,6 +91,9 @@ __git_complete gpl _git_pull
 
 alias gp="git push"
 __git_complete gp _git_push
+
+# Reset initial commit and unstage all
+alias gr-initial="git update-ref -d HEAD && git reset"
 
 # Auto-commit
 alias gauto="bash ${DOTFILES_PATH}/auto-commit.sh"
