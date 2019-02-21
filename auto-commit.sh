@@ -12,11 +12,12 @@ git_copied="Copied"
 
 set -e
 
-git_repo="$1"
-if [[ "$git_repo" == "" ]]; then
-    git_repo="."
-fi
-
+get_repo_path () {
+    git_repo="$1"
+    if [[ "$git_repo" == "" ]]; then
+        git_repo="."
+    fi
+}
 
 check_dirty () {
     if ! [[ $(git -C "$git_repo" status --porcelain) ]]; then
@@ -56,7 +57,7 @@ parse_status () {
                 cur_copied+=("$file_name")
                 ;;
         esac
-    done < <(git -C "$git_repo" status --short --porcelain)
+    done < <(git -C "$git_repo" status --untracked --short --porcelain)
 }
 
 create_msg () {
@@ -80,10 +81,11 @@ create_commit () {
     create_msg cur_copied[@] "$git_copied"
     full_commit_msg="[AUTO] ${full_commit_msg::-1}"
 
-    git -C "$git_repo" add -A && git -C "$git_repo" commit -m "$full_commit_msg"
+    git -C "$git_repo" add -A && git -C "$git_repo" commit -vem "$full_commit_msg"
 }
 
 
+get_repo_path
 check_dirty
 parse_status
 create_commit
