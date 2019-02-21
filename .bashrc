@@ -12,8 +12,11 @@ GIT_PS1_SHOWUPSTREAM=true
 PS1='\[\033[1;37m\]\u\[\033[0m\]@\h \[\033[0;32m\]\w\[\033[0m\] $(__git_ps1 "(%s)")\$ '
 
 # Initial Setup
-export DOTFILES_PATH=$(dirname ${BASH_SOURCE[0]})
 export EDITOR=vim
+
+export DOTFILES_PATH=$(dirname ${BASH_SOURCE[0]})
+export USEFUL_COMMANDS_PATH="${HOME}/useful-commands"
+export NOTES_PATH="$HOME/notes"
 
 # History
 SAVEHIST=1000
@@ -28,9 +31,16 @@ alias ll="ls -lA"
 shopt -s autocd
 alias -- -="cd -"
 
-md () { mkdir -p "$1" && cd -P "$1"; };
+md () { mkdir -p "$1" && cd -P "$1"; }
 
+# Commenly used dirs
+alias dot="cd $DOTFILES_PATH"
+alias ncd="cd $NOTES_PATH"
 
+# Commenly used files
+alias .b="$EDITOR ${DOTFILES_PATH}/.bashrc"
+alias .v="$EDITOR ${DOTFILES_PATH}/.vimrc"
+alias .p="$EDITOR ${DOTFILES_PATH}/programs.apt"
 
 alias gst="git status --show-stash --untracked"
 __git_complete gst _git_status
@@ -162,12 +172,9 @@ sl () {
 }
 
 # Search-line for useful-commands
-USEFUL_COMMANDS_PATH="${HOME}/useful-commands"
 alias uc='sl "$USEFUL_COMMANDS_PATH"'
 
 
 # Notes
-NOTES_PATH="$HOME/notes"
-
 source ~/dotfiles/notes-completion.bash
 alias n=
