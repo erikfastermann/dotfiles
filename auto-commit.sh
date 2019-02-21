@@ -65,7 +65,7 @@ parse_status () {
                 cur_copied+=("$file_name")
                 ;;
         esac
-    done < <(echo "$git_files_staged" | xargs git -C "$git_repo" status --porcelain --short --untracked)
+    done < <(echo "$git_files_staged" | xargs git -C "$git_repo" status --porcelain --short --untracked -- )
 }
 
 create_msg () {
@@ -92,7 +92,7 @@ create_commit () {
     if [[ "$git_files_staged" == "" ]]; then
         git -C "$git_repo" add -A
     fi
-    git -C "$git_repo" commit -vem "$full_commit_msg"
+    git -C "$git_repo" commit -m "$full_commit_msg"
 }
 
 

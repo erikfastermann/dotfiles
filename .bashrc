@@ -6,8 +6,8 @@ GIT_PS1_SHOWUNTRACKEDFILES=true
 GIT_PS1_SHOWUPSTREAM=true
 PS1='\[\033[1;37m\]\u\[\033[0m\]@\h \[\033[0;32m\]\w\[\033[0m\] $(__git_ps1 "(%s)")\$ '
 
-
 # Initial Setup
+export DOTFILES_PATH=$(dirname ${BASH_SOURCE[0]})
 export EDITOR=vim
 
 # History
@@ -68,6 +68,9 @@ __git_complete gpl _git_pull
 
 alias gp="git push"
 __git_complete gp _git_push
+
+# Auto-commit
+alias gauto="bash ${DOTFILES_PATH}/auto-commit.sh"
 
 # Execute commands on all non bare repositories from a folder
 # USAGE: gall dir args...
