@@ -23,8 +23,12 @@ SAVEHIST=1000
 HISTFILE=~/.bash_history
 
 
+# Color
+alias ls="ls --color=auto"
+alias grep="grep --color=auto"
+
+
 # File Ops
-alias ls="ls --color"
 alias l="ls -l"
 alias ll="ls -lA"
 
