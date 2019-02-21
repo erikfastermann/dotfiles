@@ -30,7 +30,7 @@ md () { mkdir -p "$1" && cd -P "$1"; };
 # Bash completion
 source /etc/bash_completion.d/git-completion.bash
 
-alias gst="git status --show-stash"
+alias gst="git status --show-stash --untracked"
 __git_complete gst _git_status
 
 alias gl="git log --oneline --graph --all"
@@ -59,6 +59,15 @@ __git_complete gm _git_merge
 
 alias gr="git reset"
 __git_complete gr _git_reset
+
+alias gf="git fetch --all"
+__git_complete gf _git_fetch
+
+alias gpl="git pull"
+__git_complete gpl _git_pull
+
+alias gp="git push"
+__git_complete gp _git_push
 
 # Execute commands on all non bare repositories from a folder
 # USAGE: gall dir args...
