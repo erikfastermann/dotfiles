@@ -1,5 +1,10 @@
+# Bash-completion
+if [ -f /etc/bash_completion ]; then
+    . /etc/bash_completion
+fi
+
+
 # Prompt
-source /etc/bash_completion.d/git-prompt
 GIT_PS1_SHOWDIRTYSTATE=true
 GIT_PS1_SHOWSTASHSTATE=true
 GIT_PS1_SHOWUNTRACKEDFILES=true
@@ -26,9 +31,6 @@ alias -- -="cd -"
 md () { mkdir -p "$1" && cd -P "$1"; };
 
 
-# Git
-# Bash completion
-source /etc/bash_completion.d/git-completion.bash
 
 alias gst="git status --show-stash --untracked"
 __git_complete gst _git_status
