@@ -12,18 +12,24 @@ git_copied="Copied"
 
 set -e
 
-get_repo_path () {
-    git_repo="$1"
-    if [[ "$git_repo" == "" ]]; then
-        git_repo="."
-    fi
-}
+git_repo="$1"
+if [[ "$git_repo" == "" ]]; then
+    git_repo="."
+fi
+
 
 check_dirty () {
     if ! [[ $(git -C "$git_repo" status --porcelain) ]]; then
         echo "Nothing to commit. Exiting..."
         exit 0
     fi
+}
+
+check_staged () {
+    local IFS=$'\n'
+    for file in $(git diff --name-only --staged); do
+        git_files_staged="${git_files_staged}"'"'"${file}"'" '
+    done
 }
 
 parse_status () {
@@ -34,8 +40,10 @@ parse_status () {
     cur_copied=()
 
     while read -r line; do
-        local status_code="$(echo $line | cut -d ' ' -f1)"
-        local file_name="$(echo $line | cut -d ' ' -f2-)"
+        local status_code
+        local file_name
+        status_code=$(echo "$line" | cut -d ' ' -f1)
+        file_name=$(echo "$line" | cut -d ' ' -f2- | awk '{$1=$1};1' )
 
         case "$status_code" in
             "??")
@@ -57,7 +65,7 @@ parse_status () {
                 cur_copied+=("$file_name")
                 ;;
         esac
-    done < <(git -C "$git_repo" status --untracked --short --porcelain)
+    done < <(echo "$git_files_staged" | xargs git -C "$git_repo" status --porcelain --short --untracked)
 }
 
 create_msg () {
@@ -81,11 +89,14 @@ create_commit () {
     create_msg cur_copied[@] "$git_copied"
     full_commit_msg="[AUTO] ${full_commit_msg::-1}"
 
-    git -C "$git_repo" add -A && git -C "$git_repo" commit -vem "$full_commit_msg"
+    if [[ "$git_files_staged" == "" ]]; then
+        git -C "$git_repo" add -A
+    fi
+    git -C "$git_repo" commit -vem "$full_commit_msg"
 }
 
 
-get_repo_path
 check_dirty
+check_staged
 parse_status
 create_commit
