@@ -57,3 +57,9 @@ echo -e "\nLinking .gitconfig"
 dotfiles_gitconfig="${dotfiles_dir}/.gitconfig"
 git_config="${HOME}/.gitconfig"
 $dry_run ln -sf "$dotfiles_gitconfig" "$git_config"
+
+echo -e "\nUpdating, upgrading and installing packages"
+apt_programs="$(dirname ${BASH_SOURCE[0]})/programs.apt"
+$dry_run sudo apt-get update
+$dry_run sudo apt-get upgrade -y
+$dry_run xargs -a "$apt_programs" sudo apt-get install -y
