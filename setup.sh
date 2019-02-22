@@ -15,7 +15,20 @@ if [[ "$1" == "--dry" ]]; then
     dry_run="echo"
 fi
 
-echo "Adding sourcing of .bashrc"
+echo "Remember sudo"
+$dry_run sudo echo
+
+echo -e "\nCloning/pulling personal repos"
+git_repos=("https://github.com/erikfastermann/dotfiles" \
+    "https://github.com/erikfastermann/scripts" \
+    "https://github.com/erikfastermann/useful-commands")
+for repo in "${git_repos[@]}"; do
+    clone_path="${HOME}/${repo##*/}"
+    $dry_run git clone "$repo" "$clone_path" \
+        || git -C "$clone_path" pull
+done
+
+echo -e "\nAdding sourcing of .bashrc"
 dotfiles_bashrc="${dotfiles_dir}/.bashrc"
 bash_config="${HOME}/.bashrc"
 if ! [[ "$dry_run" ]]; then
