@@ -98,6 +98,16 @@ alias gr-initial="git update-ref -d HEAD && git reset"
 # Auto-commit
 alias gauto="bash ${DOTFILES_PATH}/auto-commit.sh"
 
+# Auto-commit every untracked/modified file separate
+# Already added, renamed files will belong to the first commit
+gauto-separate () {
+    while read file; do
+        git add "$file"
+        gauto
+        echo ----------
+    done < <(git ls-files --other --modified)
+}
+
 # Execute commands on all non bare repositories from a folder
 # USAGE: gall dir args...
 gall () {
