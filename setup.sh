@@ -19,9 +19,7 @@ fi
 
 
 source_bashrc () {
-    echo
     if ! grep -q "source $dotfiles_bashrc" "${HOME}/.bashrc"; then
-        echo "Adding sourcing of .bashrc"
         if [[ "$dry_run" ]]; then
             echo "echo source $dotfiles_bashrc >> ${HOME}/.bashrc"
             return
@@ -32,28 +30,21 @@ source_bashrc () {
 
 source_vimrc () {
     # For Neovim
-    echo
-	mkdir -p ~/.config/nvim/
 	if [[ "$dry_run" ]]; then
     	if ! grep -q "so $dotfiles_vimrc" "${HOME}/.config/nvim/init.vim"; then
-        	echo "Adding sourcing of .vimrc"
             echo "echo so ${dotfiles_vimrc} >> ${HOME}/.config/nvim/init.vim"
             return
         fi
     fi
     if ! grep -q "so $dotfiles_vimrc" "${HOME}/.config/nvim/init.vim"; then
-        echo "Adding sourcing of .vimrc"
 		mkdir -p ~/.config/nvim/
 		echo "so ${dotfiles_vimrc}" >> "${HOME}/.config/nvim/init.vim"
 	fi
 }
 
 git_bash_completion () {
-	echo
-	echo "Installing BASH completion for Git"
 	if [[ "$dry_run" ]]; then
-		echo "sudo curl -L https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash \
-		-o /etc/bash_completion.d/git-completion.bash"
+		echo "sudo curl -L https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o /etc/bash_completion.d/git-completion.bash"
 		return
 	fi
 	sudo curl -L https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash \
@@ -61,9 +52,7 @@ git_bash_completion () {
 }
 
 link_git_config () {
-	echo
 	if [[ "$dry_run" ]]; then
-		echo "Linking .gitconfig"
 		echo "ln -sf $dotfiles_gitconfig ${HOME}/.gitconfig"
 		return
 	fi
@@ -71,7 +60,21 @@ link_git_config () {
 }
 
 
+echo "Adding sourcing of .bashrc"
 source_bashrc
+echo "Done!"
+echo
+
+echo "Adding sourcing of .vimrc"
 source_vimrc
+echo "Done!"
+echo
+
+echo "Installing BASH completion for Git"
 git_bash_completion
+echo "Done!"
+echo
+
+echo "Linking .gitconfig"
 link_git_config
+echo "Done!"
