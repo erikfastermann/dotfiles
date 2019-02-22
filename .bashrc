@@ -53,7 +53,7 @@ alias sau="sudo apt-get update && sudo apt-get upgrade -y"
 
 
 # Git
-alias gst="git status --show-stash --untracked"
+alias gst="git status --show-stash"
 __git_complete gst _git_status
 
 alias gl="git log --oneline --graph --all"
