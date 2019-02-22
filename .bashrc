@@ -14,10 +14,10 @@ PS1='\[\033[1;37m\]\u\[\033[0m\]@\h \[\033[0;32m\]\w\[\033[0m\] $(__git_ps1 "(%s
 # Initial Setup
 export EDITOR=vim
 
-export DOTFILES_PATH=$(dirname ${BASH_SOURCE[0]})
-export SCRIPTS_PATH="${HOME}/scripts"
-export USEFUL_COMMANDS_PATH="${HOME}/useful-commands"
-export NOTES_PATH="$HOME/notes"
+export DOTFILES=$(dirname ${BASH_SOURCE[0]})
+export SCRIPTS="${HOME}/scripts"
+export USEFUL_COMMANDS="${HOME}/useful-commands"
+export NOTES="$HOME/notes"
 
 # History
 SAVEHIST=1000
@@ -39,14 +39,14 @@ alias -- -="cd -"
 md () { mkdir -p "$1" && cd -P "$1"; }
 
 # Commenly used dirs
-alias dot="cd $DOTFILES_PATH"
-alias ncd="cd $NOTES_PATH"
-alias s="cd $SCRIPTS_PATH"
+alias dot="cd $DOTFILES"
+alias ncd="cd $NOTES"
+alias s="cd $SCRIPTS"
 
 # Commenly used files
-alias .b="$EDITOR ${DOTFILES_PATH}/.bashrc"
-alias .v="$EDITOR ${DOTFILES_PATH}/.vimrc"
-alias .p="$EDITOR ${DOTFILES_PATH}/programs.apt"
+alias .b="$EDITOR ${DOTFILES}/.bashrc"
+alias .v="$EDITOR ${DOTFILES}/.vimrc"
+alias .p="$EDITOR ${DOTFILES}/programs.apt"
 
 
 # Apt
@@ -98,20 +98,29 @@ __git_complete gp _git_push
 alias gr-initial="git update-ref -d HEAD && git reset"
 
 # Auto-commit
-alias gauto="bash ${SCRIPTS_PATH}/git/auto-commit.sh"
+alias gauto="bash ${SCRIPTS}/git/auto-commit.sh"
 
-# Auto-commit separate
-# alias gauto-seperate="bash ${SCRIPTS_PATH}/git/auto-commit-separate.sh"
+# Auto-commit-separate
+alias gauto-separate="bash ${SCRIPTS}/git/auto-commit-separate.sh"
+
+# Exec a command on all repos in some dir
+alias gall="bash ${SCRIPTS}/git/exec-on-all-repos.sh"
+
+# Exec a command on all repos with differences in upstream in some dir
+alias gup="bash ${SCRIPTS}/git/exec-on-upstream-repos.sh"
 
 # Show status for all dirty repos in the HOME folder
-# alias gsta='gall "$HOME" "if [[ \$(git status --porcelain) ]]; then pwd && git status --short --branch && echo; fi;"'
+alias gsta='gall "$HOME" "if [[ \$(git status --porcelain) ]]; then pwd && git status --short --branch && echo; fi;"'
 
 # Fetch all repos in the HOME folder and show repos with differences from upstream
-# alias gfa='gall "$HOME" echo \&\& pwd \&\& git fetch --all; echo -----------;gup "$HOME" echo \&\& pwd \&\& git status --short --branch'
+alias gfa='gall "$HOME" echo \&\& pwd \&\& git fetch --all; echo -----------;gup "$HOME" echo \&\& pwd \&\& git status --short --branch'
 
+
+# Search thru all lines in files of some dir
+alias sl="bash ${SCRIPTS}/search/search-lines.sh"
 
 # Search-line for useful-commands
-# alias uc='sl "$USEFUL_COMMANDS_PATH"'
+alias uc='sl "$USEFUL_COMMANDS"'
 
 
 # Notes
