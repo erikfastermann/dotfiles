@@ -97,6 +97,9 @@ __git_complete gp _git_push
 # Reset initial commit and unstage all
 alias gr-initial="git update-ref -d HEAD && git reset"
 
+# Browse commits for all files
+alias gbrowse="bash ${SCRIPTS}/git/browse.sh"
+
 # Auto-commit
 alias gauto="bash ${SCRIPTS}/git/auto-commit.sh"
 
