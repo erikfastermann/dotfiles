@@ -60,8 +60,11 @@ alias sau="sudo apt-get update && sudo apt-get upgrade -y"
 alias gst="git status --show-stash"
 __git_complete gst _git_status
 
-alias gl="git log --oneline --graph --all"
-alias gll="git log --graph --all --pretty=format:'%C(auto)%h%d %Cblue(%an %ar)%Creset %s'"
+alias gl="git log --graph --all --format='%C(auto)%h%d %s %Cblue(%ar) %Cgreen<%an>%Creset'"
+__git_complete gl _git_log
+
+alias gll="gl --stat"
+__git_complete gll _git_log
 
 alias gd="git diff"
 __git_complete gd _git_diff
