@@ -4,15 +4,16 @@
 [alias]
     # Browse commits for all files
 	browse = "!bash ${SCRIPTS}/git/browse.sh"
-
     # Auto-commit
     auto = "!bash ${SCRIPTS}/git/auto-commit.sh"
-
     # Auto-commit-separate
     auto-separate="!bash ${SCRIPTS}/git/auto-commit-separate.sh"
-
     # Reset initial commit and unstage all
     reset-initial = "!git update-ref -d HEAD && git reset"
-
     # Open GitHub in $BROWSER for this repo
     gh = "!bash $BROWSER $(git remote get-url origin | sed -e 's+git@github.com:+https://github.com/+')"
+
+[url "https://github.com/"]
+    insteadOf = "gh:"
+[url "git@github.com:"]
+    insteadOf = "ghs:"
