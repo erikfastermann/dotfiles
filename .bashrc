@@ -57,6 +57,12 @@ alias sau="sudo apt-get update && sudo apt-get upgrade -y"
 
 
 # Git
+alias gi="git init"
+__git_complete gi _git_complete
+
+alias gcl="git clone"
+__git_complete gcl _git_clone
+
 alias gst="git status --show-stash"
 __git_complete gst _git_status
 

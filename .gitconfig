@@ -2,6 +2,7 @@
 	name = Erik Fastermann
 	email = erik@fastermann.de
 [alias]
+    wipe = "!git reset --hard HEAD && git clean -fd"
     # Browse commits for all files
 	browse = "!bash ${SCRIPTS}/git/browse.sh"
     # Auto-commit
