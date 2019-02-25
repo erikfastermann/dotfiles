@@ -1,3 +1,15 @@
 [user]
 	name = Erik Fastermann
 	email = erik@fastermann.de
+[alias]
+    # Browse commits for all files
+	browse = "!bash ${SCRIPTS}/git/browse.sh"
+
+    # Auto-commit
+    auto = "!bash ${SCRIPTS}/git/auto-commit.sh"
+
+    # Auto-commit-separate
+    auto-separate="!bash ${SCRIPTS}/git/auto-commit-separate.sh"
+
+    # Reset initial commit and unstage all
+    reset-initial = "!git update-ref -d HEAD && git reset"

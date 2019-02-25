@@ -46,6 +46,7 @@ alias s="cd $SCRIPTS"
 # Commenly used files
 alias .b="$EDITOR ${DOTFILES}/.bashrc"
 alias .v="$EDITOR ${DOTFILES}/.vimrc"
+alias .g="$EDITOR ${DOTFILES}/.gitconfig"
 alias .p="$EDITOR ${DOTFILES}/programs.apt"
 
 
@@ -93,18 +94,6 @@ __git_complete gpl _git_pull
 
 alias gp="git push"
 __git_complete gp _git_push
-
-# Reset initial commit and unstage all
-alias gr-initial="git update-ref -d HEAD && git reset"
-
-# Browse commits for all files
-alias gbrowse="bash ${SCRIPTS}/git/browse.sh"
-
-# Auto-commit
-alias gauto="bash ${SCRIPTS}/git/auto-commit.sh"
-
-# Auto-commit-separate
-alias gauto-separate="bash ${SCRIPTS}/git/auto-commit-separate.sh"
 
 # Exec a command on all repos in some dir
 alias gall="bash ${SCRIPTS}/git/exec-on-all-repos.sh"
