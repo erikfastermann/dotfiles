@@ -13,6 +13,7 @@ PS1='\[\033[1;37m\]\u\[\033[0m\]@\h \[\033[0;32m\]\w\[\033[0m\] $(__git_ps1 "(%s
 
 # Initial Setup
 export EDITOR=vim
+export BROWSER=firefox
 
 export DOTFILES=$(dirname ${BASH_SOURCE[0]})
 export SCRIPTS="${HOME}/scripts"

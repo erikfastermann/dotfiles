@@ -13,3 +13,6 @@
 
     # Reset initial commit and unstage all
     reset-initial = "!git update-ref -d HEAD && git reset"
+
+    # Open GitHub in $BROWSER for this repo
+    gh = "!bash $BROWSER $(git remote get-url origin | sed -e 's+git@github.com:+https://github.com/+')"
