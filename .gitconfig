@@ -2,9 +2,12 @@
 	name = Erik Fastermann
 	email = erik@fastermann.de
 [alias]
+    undo = "reset HEAD^"
     wipe = "!git reset --hard HEAD && git clean -fd"
+    # Serve all repos in a folder
+    serve = "!git daemon --base-path=. --export-all --informative-errors --verbose"
     # Browse commits for all files
-	browse = "!bash ${SCRIPTS}/git/browse.sh"
+    browse = "!bash ${SCRIPTS}/git/browse.sh"
     # Auto-commit
     auto = "!bash ${SCRIPTS}/git/auto-commit.sh"
     # Auto-commit-separate
