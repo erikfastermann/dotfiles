@@ -4,6 +4,9 @@
 [alias]
     undo = "reset HEAD^"
     wipe = "!git reset --hard HEAD && git clean -fd"
+    # Get diff of BRANCH origin/BRANCH
+    news = "!f () { local curr_branch=$(git branch | grep -F '*' | cut -d' ' -f2); \
+            git diff $curr_branch $(git remote | head -n1)/${curr_branch}; }; f"
     # Serve all repos in a folder
     serve = "!git daemon --base-path=. --export-all --informative-errors --verbose"
     # Browse commits for all files
