@@ -112,10 +112,18 @@ alias gall="bash ${SCRIPTS}/git/exec-on-all-repos.sh"
 alias gup="bash ${SCRIPTS}/git/exec-on-upstream-repos.sh"
 
 # Show status for all dirty repos in the HOME folder
-alias gsta='gall "$HOME" "if [[ \$(git status --porcelain) ]]; then pwd && git status --short --branch && echo; fi;"'
+gsta () {
+    local dir=$([ -z "$1" ] && echo "$HOME" || echo "$1")
+    gall "$dir" "if [[ \$(git status --porcelain) ]]; then pwd && git status --short --branch && echo; fi;"
+}
 
 # Fetch all repos in the HOME folder and show repos with differences from upstream
-alias gfa='gall "$HOME" echo \&\& pwd \&\& git fetch --all; echo -----------;gup "$HOME" echo \&\& pwd \&\& git status --short --branch'
+gfa () {
+    local dir=$([ -z "$1" ] && echo "$HOME" || echo "$1")
+    gall "$dir" echo \&\& pwd \&\& git fetch --all
+    echo -----------
+    gup "$dir" echo \&\& pwd \&\& git status --short --branch
+}
 
 
 # Search thru all lines in files of some dir
