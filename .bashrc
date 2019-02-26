@@ -43,6 +43,7 @@ md () { mkdir -p "$1" && cd -P "$1"; }
 alias dot="cd $DOTFILES"
 alias ncd="cd $NOTES"
 alias s="cd $SCRIPTS"
+alias u="cd $USEFUL_COMMANDS"
 
 # Commenly used files
 alias .b="$EDITOR ${DOTFILES}/.bashrc"
