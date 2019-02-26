@@ -24,8 +24,8 @@ git_repos=("https://github.com/erikfastermann/dotfiles" \
     "https://github.com/erikfastermann/useful-commands")
 for repo in "${git_repos[@]}"; do
     clone_path="${HOME}/${repo##*/}"
-    $dry_run git clone "$repo" "$clone_path" \
-        || git -C "$clone_path" pull
+    $dry_run git -C "$clone_path" pull \
+        || git clone "$repo" "$clone_path"
 done
 
 echo -e "\nAdding sourcing of .bashrc"
