@@ -84,7 +84,7 @@ __git_complete gc _git_commit
 alias gac="git add -A && git commit -v"
 alias gacp="git add -A && git commit -v && git push"
 
-alias gb="git branch"
+alias gb="git branch -vv"
 __git_complete gb _git_branch
 
 alias gco="git checkout"
