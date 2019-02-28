@@ -29,6 +29,10 @@ alias ls="ls --color=auto"
 alias grep="grep --color=auto"
 
 
+# Setup
+alias setup="bash ${DOTFILES}/setup.sh"
+
+
 # File Ops
 alias l="ls -l"
 alias ll="ls -lA"
