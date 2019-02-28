@@ -1,13 +1,12 @@
 git
-golang
+go
 tree
-bash-completion
 neovim
 firefox
 ffmpeg
-suckless-tools
-python3
-python3-pip
+dmenu
+python
+python-pip
 xclip
 xdotool
 unzip
@@ -15,7 +14,7 @@ virtualbox
 pass
 entr
 groff
-r-recommended
+r
 tmux
 pandoc
 gimp

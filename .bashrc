@@ -1,7 +1,6 @@
 # Bash-completion
-if [ -f /etc/bash_completion ]; then
-    . /etc/bash_completion
-fi
+source /usr/share/git/completion/git-completion.bash
+source /usr/share/git/completion/git-prompt.sh
 
 
 # Prompt
@@ -52,9 +51,8 @@ alias .g="$EDITOR ${DOTFILES}/.gitconfig"
 alias .p="$EDITOR ${DOTFILES}/programs.apt"
 
 
-# Apt
-alias sai="sudo apt-get update && sudo apt-get install"
-alias sau="sudo apt-get update && sudo apt-get upgrade -y"
+# Pacman
+alias sp="sudo pacman"
 
 
 # Git
