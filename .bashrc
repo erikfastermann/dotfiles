@@ -8,7 +8,7 @@ GIT_PS1_SHOWDIRTYSTATE=true
 GIT_PS1_SHOWSTASHSTATE=true
 GIT_PS1_SHOWUNTRACKEDFILES=true
 GIT_PS1_SHOWUPSTREAM=true
-PS1='\[\033[1;37m\]\u\[\033[0m\]@\h \[\033[0;32m\]\w\[\033[0m\] $(__git_ps1 "(%s)")\$ '
+PS1='\[\033[1;31m\]\u@\h \[\033[1;32m\]\w\[\033[0m\]\[\033[1;36m\]$(__git_ps1)\[\033[0m\]\$ '
 
 # Initial Setup
 export EDITOR=vim
