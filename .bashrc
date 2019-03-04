@@ -53,7 +53,7 @@ alias u="cd $USEFUL_COMMANDS"
 alias .b="$EDITOR ${DOTFILES}/.bashrc"
 alias .v="$EDITOR ${DOTFILES}/.vimrc"
 alias .g="$EDITOR ${DOTFILES}/.gitconfig"
-alias .p="$EDITOR ${DOTFILES}/programs.apt"
+alias .p="$EDITOR ${DOTFILES}/programs.arch"
 
 
 # Pacman
