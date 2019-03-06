@@ -18,7 +18,7 @@ export BROWSER=firefox
 export DOTFILES=$(dirname ${BASH_SOURCE[0]})
 export SCRIPTS="${HOME}/scripts"
 export USEFUL_COMMANDS="${HOME}/useful-commands"
-export NOTES="$HOME/notes"
+export NOTES="$HOME/notizen"
 
 # History
 SAVEHIST=1000
@@ -138,5 +138,4 @@ alias uc='sl "$USEFUL_COMMANDS"'
 
 
 # Notes
-source ~/dotfiles/notes-completion.bash
-alias n=
+alias n='sl "$NOTES"'
