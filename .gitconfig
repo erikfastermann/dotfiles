@@ -4,6 +4,8 @@
 [alias]
     undo = "reset HEAD^"
     wipe = "!git reset --hard HEAD && git clean -fd"
+    # Show deleted lines from all revisions of a file
+    del-lines = "!bash ${SCRIPTS}/git/show-deleted-lines.sh"
     # Get diff of BRANCH origin/BRANCH
     news = "!f () { local curr_branch=$(git branch | grep -F '*' | cut -d' ' -f2); \
             git diff $curr_branch $(git remote | head -n1)/${curr_branch}; }; f"
