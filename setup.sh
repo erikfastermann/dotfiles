@@ -15,9 +15,6 @@ if [[ "$1" == "--dry" ]] || [[ "$1" == "-n" ]]; then
     dry_run="echo"
 fi
 
-echo "Remember sudo"
-$dry_run sudo echo
-
 echo -e "\nCloning/pulling personal repos"
 git_repos=("https://github.com/erikfastermann/dotfiles" \
     "https://github.com/erikfastermann/scripts" \
@@ -55,6 +52,16 @@ $dry_run ln -sf "$dotfiles_gitconfig" "$git_config"
 
 echo -e "\nUpdating, upgrading and installing packages"
 apt_programs="$(dirname ${BASH_SOURCE[0]})/programs.arch"
-$dry_run sudo pacman -Syy
-$dry_run sudo pacman --noconfirm -Su
-$dry_run xargs -a "$apt_programs" sudo pacman --needed --noconfirm -S 
+$dry_run sudo apt-get update
+$dry_run sudo apt-get upgrade -y
+
+echo -e "\nUbuntu: Git prompt and completion"
+sudo apt-get install curl
+sudo mkdir -p /usr/share/git/completion/
+sudo curl -L https://raw.githubusercontent.com/git/git/master/contrib/completion/git-completion.bash -o /usr/share/git/completion/git-completion.bash
+sudo curl -L  https://raw.githubusercontent.com/git/git/master/contrib/completion/git-prompt.sh -o /usr/share/git/completion/git-prompt.sh
+sudo mkdir -p /usr/share/fzf/
+
+echo -e "\nUbuntu: Fzf completion and key-bindings"
+sudo curl -L https://raw.githubusercontent.com/junegunn/fzf/master/shell/completion.bash -o /usr/share/fzf/completion.bash
+sudo curl -L https://raw.githubusercontent.com/junegunn/fzf/master/shell/key-bindings.bash -o /usr/share/fzf/key-bindings.bash
