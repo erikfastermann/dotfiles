@@ -11,8 +11,10 @@
             git diff $curr_branch $(git remote | head -n1)/${curr_branch}; }; f"
     # Serve all repos in a folder
     serve = "!git daemon --base-path=. --export-all --informative-errors --verbose"
-    # Browse commits for all files
+    # Browse some output containing commit-hashes
     browse = "!bash ${SCRIPTS}/git/browse.sh"
+    # List all files that are tracked in the repository
+    ls-all = "!git log --format='' --name-only | sort -u"
     # Auto-commit
     auto = "!bash ${SCRIPTS}/git/auto-commit.sh"
     # Auto-commit-separate
