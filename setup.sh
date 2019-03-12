@@ -15,9 +15,6 @@ if [[ "$1" == "--dry" ]] || [[ "$1" == "-n" ]]; then
     dry_run="echo"
 fi
 
-echo "Remember sudo"
-$dry_run sudo echo
-
 echo -e "\nCloning/pulling personal repos"
 git_repos=("https://github.com/erikfastermann/dotfiles" \
     "https://github.com/erikfastermann/scripts" \
@@ -54,7 +51,7 @@ git_config="${HOME}/.gitconfig"
 $dry_run ln -sf "$dotfiles_gitconfig" "$git_config"
 
 echo -e "\nUpdating, upgrading and installing packages"
-apt_programs="$(dirname ${BASH_SOURCE[0]})/programs.arch"
+progs="$(dirname ${BASH_SOURCE[0]})/programs.arch"
 $dry_run sudo pacman -Syy
 $dry_run sudo pacman --noconfirm -Su
-$dry_run xargs -a "$apt_programs" sudo pacman --needed --noconfirm -S 
+$dry_run xargs -a "$progs" sudo pacman --needed --noconfirm -S 
