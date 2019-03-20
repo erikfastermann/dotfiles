@@ -45,6 +45,17 @@ else
     echo "echo so $dotfiles_vimrc > $neovim_config"
 fi
 
+echo -e "\nIncluding the Sway config"
+dotfiles_sway="${dotfiles_dir}/sway.conf"
+sway_config_dir="${HOME}/.config/sway"
+$dry_run mkdir -p "$sway_config_dir"
+sway_config="${sway_config_dir}/config"
+if ! [[ "$dry_run" ]]; then
+    echo "include $dotfiles_sway" > "$sway_config"
+else
+    echo "echo include $dotfiles_sway > $sway_config"
+fi
+
 echo -e "\nLinking .gitconfig"
 dotfiles_gitconfig="${dotfiles_dir}/.gitconfig"
 git_config="${HOME}/.gitconfig"
