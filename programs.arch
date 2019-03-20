@@ -10,6 +10,7 @@ python-pip
 xclip
 xdotool
 unzip
+unrar
 virtualbox
 pass
 entr
@@ -26,3 +27,14 @@ jq
 fd
 sxiv
 fzf
+htop
+sway
+swaylock
+acpid
+noto-fonts-emoji
+terminus-font
+alsa-utils
+pulseaudio
+openssh
+light
+playerctl
