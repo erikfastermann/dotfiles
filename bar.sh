@@ -24,4 +24,9 @@ else
     music=
 fi
 
-echo "$music $vol $temp $bright $bat $time"
+wifi="$(ip address show dev wlp59s0 | grep -m1 inet | awk '{ OFS=" " }; { print $2 }')"
+if [[ "$wifi" ]]; then
+    wifi="📶${wifi}"
+fi
+
+echo "$music $vol $wifi $temp $bright $bat $time"
