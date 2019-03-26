@@ -141,3 +141,9 @@ alias uc='sl "$USEFUL_COMMANDS"'
 
 # Notes
 alias n='sl "$NOTES"'
+
+
+# If running from tty1 start sway
+if [ "$(tty)" = "/dev/tty1" ]; then
+	sway
+fi
