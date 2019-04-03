@@ -99,5 +99,5 @@ gfa () {
 alias sl="bash ${SCRIPTS}/search/search-lines.sh"
 
 if [ "$(tty)" = "/dev/tty1" ]; then
-	sway
+	ssh-agent sway
 fi
