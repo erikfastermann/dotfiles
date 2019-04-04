@@ -98,6 +98,9 @@ gfa () {
 
 alias sl="bash ${SCRIPTS}/search/search-lines.sh"
 
+alias yt-mp3="youtube-dl -ciwx -f best --audio-format mp3"
+alias yt="youtube-dl -ciwk -f best"
+
 if [ "$(tty)" = "/dev/tty1" ]; then
 	ssh-agent sway
 fi
