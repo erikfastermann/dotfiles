@@ -32,10 +32,9 @@ alias -- -="cd -"
 
 md () { mkdir -p "$1" && cd -P "$1"; }
 
-# Pacman
 alias sp="sudo pacman"
+alias sv="sudo $EDITOR"
 
-# Git
 alias gi="git init"
 __git_complete gi _git_complete
 
