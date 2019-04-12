@@ -28,4 +28,4 @@ if [[ $(pacman -Qu) ]]; then
     updates="⬇"
 fi
 
-echo "$updates $music $vol $wifi $temp $bright $bat $time"
+echo "$updates $music $vol $wifi$temp $bright $bat $time"
