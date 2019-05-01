@@ -14,6 +14,7 @@ export BROWSER=firefox
 
 export DOTFILES=$(dirname ${BASH_SOURCE[0]})
 export SCRIPTS="${HOME}/scripts"
+export YT_MUSIK="${HOME}/youtube/musik"
 
 # History
 SAVEHIST=
@@ -97,8 +98,11 @@ gfa () {
 
 alias sl="bash ${SCRIPTS}/search/search-lines.sh"
 
-alias yt-mp3="youtube-dl -ciwx -f best --audio-format mp3"
-alias yt="youtube-dl -ciwk -f best"
+alias yt="youtube-dl -ciwk -f best --add-metadata -o '%(title)s.%(ext)s' --restrict-filenames"
+alias yt-mp3="youtube-dl -ciwx -f best --audio-format mp3 --add-metadata -o '%(title)s.%(ext)s' --restrict-filenames"
+alias yt-sync="yt-mp3 --download-archive '${YT_MUSIK}/archive.txt' -o '${YT-MUSIK}/%(playlist)s/%(title)s.%(ext)s' -a '${YT_MUSIK}/youtube.txt'"
+
+alias x='chmod u+x'
 
 if [ "$(tty)" = "/dev/tty1" ]; then
 	ssh-agent sway
