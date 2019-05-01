@@ -24,14 +24,16 @@ HISTFILE=~/.bash_history
 alias ls="ls --color=auto"
 alias grep="grep --color=auto"
 
-# File Ops
-alias l="ls -l"
-alias ll="ls -lA"
+alias l="ls -lh"
+alias ll="ls -lhA"
 
-shopt -s autocd
-alias -- -="cd -"
+CDPATH="$HOME"
+alias -- -='cd -'
+alias ..='cd ..'
 
 md () { mkdir -p "$1" && cd -P "$1"; }
+
+alias new="find . -maxdepth 1 -type f -print0 | xargs -0 stat -c '%y %n' | sort | cut -d' ' -f4- | tail -1"
 
 alias sp="sudo pacman"
 alias sv="sudo $EDITOR"
