@@ -24,8 +24,5 @@ else
     music=
 fi
 wifi="📶$(hostname -i)"
-if [[ $(pacman -Qu) ]]; then
-    updates="⬇"
-fi
 
 echo "$updates $music $vol $wifi$temp $bright $bat $time"
