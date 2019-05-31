@@ -107,5 +107,5 @@ alias yt-sync="yt-mp3 --download-archive '${YT_MUSIK}/archive.txt' -o '${YT-MUSI
 alias x='chmod u+x'
 
 if [ "$(tty)" = "/dev/tty1" ]; then
-	ssh-agent sway
+	ssh-agent startx
 fi
