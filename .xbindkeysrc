@@ -1,0 +1,21 @@
+"pactl set-sink-volume 0 +2%"
+	XF86AudioRaiseVolume
+"pactl set-sink-volume 0 -2%"
+	XF86AudioLowerVolume
+"pactl set-sink-mute 0 toggle"
+	XF86AudioMute
+
+"playerctl play-pause"
+	XF86AudioPlay
+"playerctl next"
+	XF86AudioNext
+"playerctl previous"
+	XF86AudioPrev
+
+"light -A 10"
+	XF86MonBrightnessUp
+"light -U 10"
+	XF86MonBrightnessDown
+
+"firefox"
+	Mod4 + w
