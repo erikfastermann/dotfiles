@@ -7,8 +7,8 @@ if grep -q Charging /sys/class/power_supply/BAT0/status; then
 else
     bat="🔋${bat}"
 fi
-bright="💡$(light -G)"
-temp="🔥$(sensors | grep 'Package id 0' | cut -d' ' -f5)"
+bright="☀$(echo "$(cat /sys/devices/pci0000:00/0000:00:02.0/drm/card0/card0-eDP-1/intel_backlight/brightness) $(cat /sys/devices/pci0000:00/0000:00:02.0/drm/card0/card0-eDP-1/intel_backlight/max_brightness)" | awk '{print $1 / $2}')"
+temp="🌡$(sed 's/000$/°C/' /sys/class/thermal/thermal_zone10/temp)"
 if [[ $(pactl list sinks | grep Stumm) == *"ja" ]]; then
     vol="🔇"
 else
