@@ -1,6 +1,6 @@
 #!/bin/bash
 
-time=$(date +'📅%F(%a) 🕓%T')
+time=$(date +'📆%F(%a) ⏰%T')
 bat="$(cat /sys/class/power_supply/BAT0/capacity)"
 if grep -q Charging /sys/class/power_supply/BAT0/status; then
     bat="⚡${bat}"
@@ -12,7 +12,7 @@ temp="🔥$(sensors | grep 'Package id 0' | cut -d' ' -f5)"
 if [[ $(pactl list sinks | grep Stumm) == *"ja" ]]; then
     vol="🔇"
 else
-    vol="🔈$(pactl list sinks | grep Lautstärke | grep -o '[0-9]*%' | head -n1)"
+    vol="🔊$(pactl list sinks | grep Lautstärke | grep -o '[0-9]*%' | head -n1)"
 fi
 
 music="$(playerctl metadata artist) - $(playerctl metadata title)"
