@@ -23,6 +23,17 @@ elif [[ $(playerctl status) == "Paused" ]]; then
 else
     music=
 fi
-wifi="📶$(hostname -i)"
 
-echo "$updates $music $vol $wifi$temp $bright $bat $time"
+ip="($(hostname -i | sed 's/\s$//'))"
+if [ "$ip" = "(127.0.0.2)" ]; then
+	ip=""
+fi
+
+wifi="$(iw wlp59s0 link | grep -o '^\sSSID: .*$' | sed 's/^\sSSID: //')"
+if ! [ "$wifi" ]; then
+	wifi="⛔"
+else
+	wifi="📶${wifi}"
+fi
+
+echo "$updates $music $vol $wifi${ip} $temp $bright $bat $time"
