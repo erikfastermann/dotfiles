@@ -9,9 +9,11 @@ set nocompatible
 set number relativenumber
 set mouse=a
 syntax on
+set autoread
+set scrolloff=3
+set ignorecase
+set smartcase
 
-" Tab as 4 spaces
-set tabstop=4
-set shiftwidth=4
-set expandtab
+set statusline=%t\ %m\ %r\ %=\ %{&ff}\ %{&fileencoding}\ %y\ %l\,%c\ %L
 
+hi MatchParen cterm=bold ctermbg=none ctermfg=magenta
