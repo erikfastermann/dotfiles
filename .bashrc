@@ -7,7 +7,8 @@ GIT_PS1_SHOWDIRTYSTATE=true
 GIT_PS1_SHOWSTASHSTATE=true
 GIT_PS1_SHOWUNTRACKEDFILES=true
 GIT_PS1_SHOWUPSTREAM=true
-PS1='\[\033[1m\]\u@\h \w$(__git_ps1) [$(echo $?)]\$\[\033[0m\] '
+
+PS1='\[\033[1m\]\u@\h \W$(__git_ps1) [$(echo $?)]\$\[\033[0m\] '
 
 export EDITOR=nvim
 export BROWSER=firefox
