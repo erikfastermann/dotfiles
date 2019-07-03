@@ -17,3 +17,8 @@ set smartcase
 set statusline=%t\ %m\ %r\ %=\ %{&ff}\ %{&fileencoding}\ %y\ %l\,%c\ %L
 
 hi MatchParen cterm=bold ctermbg=none ctermfg=magenta
+
+let g:go_fmt_command = "goimports"
+
+set path+=~/go/src
+set path+=/usr/lib/go/src
