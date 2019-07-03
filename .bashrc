@@ -20,11 +20,20 @@ export DOTFILES=$(dirname ${BASH_SOURCE[0]})
 export SCRIPTS="${HOME}/scripts"
 export YT_MUSIK="${HOME}/youtube/musik"
 
-# History
-SAVEHIST=
-HISTFILE=~/.bash_history
 export GOPATH="${HOME}/go"
 export PATH="${GOPATH}/bin:${PATH}"
+
+export SAVEHIST=
+export HISTFILE=~/.bash_history
+export HISTSIZE=10000
+export HISTFILESIZE=10000
+export HISTCONTROL=erasedups
+PROMPT_COMMAND="$PROMPT_COMMAND; history -a"
+shopt -s histappend
+shopt -s cmdhist
+
+bind '"\e[A":history-search-backward'
+bind '"\e[B":history-search-forward'
 
 
 # Color
