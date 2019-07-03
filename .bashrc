@@ -99,21 +99,6 @@ __git_complete gpl _git_pull
 alias gp="git push"
 __git_complete gp _git_push
 
-alias gall="bash ${SCRIPTS}/git/exec-on-all-repos.sh"
-alias gup="bash ${SCRIPTS}/git/exec-on-upstream-repos.sh"
-
-gsta () {
-    local dir=$([ -z "$1" ] && echo "$HOME" || echo "$1")
-    gall "$dir" "if [[ \$(git status --porcelain) ]]; then pwd && git status --short --branch && echo; fi;"
-}
-
-gfa () {
-    local dir=$([ -z "$1" ] && echo "$HOME" || echo "$1")
-    gall "$dir" echo \&\& pwd \&\& git fetch --all
-    echo -----------
-    gup "$dir" echo \&\& pwd \&\& git status --short --branch
-}
-
 alias sl="bash ${SCRIPTS}/search/search-lines.sh"
 
 alias yt="youtube-dl -ciwk -f best --add-metadata -o '%(title)s.%(ext)s' --restrict-filenames"
