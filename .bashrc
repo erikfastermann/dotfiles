@@ -10,6 +10,9 @@ GIT_PS1_SHOWUPSTREAM=true
 
 PS1='\[\033[1m\]\u@\h \W$(__git_ps1) [$(echo $?)]\$\[\033[0m\] '
 
+PROMPT_COMMAND="pwd > /tmp/cwd"
+
+export TERM=st
 export EDITOR=nvim
 export BROWSER=firefox
 
