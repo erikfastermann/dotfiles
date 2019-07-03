@@ -35,8 +35,8 @@ shopt -s cmdhist
 bind '"\e[A":history-search-backward'
 bind '"\e[B":history-search-forward'
 
+shopt -s checkwinsize
 
-# Color
 alias ls="ls --color=auto"
 alias grep="grep --color=auto"
 
