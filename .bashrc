@@ -43,9 +43,17 @@ alias grep="grep --color=auto"
 alias l="ls -lh"
 alias ll="ls -lhA"
 
-CDPATH="$HOME"
 alias -- -='cd -'
 alias ..='cd ..'
+
+scd () {
+	local dir="$*"
+	[ "$dir" = '' ] && dir="$HOME"
+	goto="$(find "$dir" -print0 2> /dev/null | fzf --read0)"
+	[ "$goto" == '' ] && goto='.'
+	[ -d "$goto" ] || goto="$(dirname "$goto")"
+	builtin cd "$goto"
+}
 
 md () { mkdir -p "$1" && cd -P "$1"; }
 
