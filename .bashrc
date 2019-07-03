@@ -49,8 +49,6 @@ alias ..='cd ..'
 
 md () { mkdir -p "$1" && cd -P "$1"; }
 
-alias new="find . -maxdepth 1 -type f -print0 | xargs -0 stat -c '%y %n' | sort | cut -d' ' -f4- | tail -1"
-
 alias sp="sudo pacman"
 alias sv="sudo $EDITOR"
 
@@ -98,8 +96,6 @@ __git_complete gpl _git_pull
 
 alias gp="git push"
 __git_complete gp _git_push
-
-alias sl="bash ${SCRIPTS}/search/search-lines.sh"
 
 alias yt="youtube-dl -ciwk -f best --add-metadata -o '%(title)s.%(ext)s' --restrict-filenames"
 alias yt-mp3="youtube-dl -ciwx -f best --audio-format mp3 --add-metadata -o '%(title)s.%(ext)s' --restrict-filenames"
