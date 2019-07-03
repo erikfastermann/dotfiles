@@ -23,6 +23,9 @@ export YT_MUSIK="${HOME}/youtube/musik"
 # History
 SAVEHIST=
 HISTFILE=~/.bash_history
+export GOPATH="${HOME}/go"
+export PATH="${GOPATH}/bin:${PATH}"
+
 
 # Color
 alias ls="ls --color=auto"
