@@ -110,7 +110,3 @@ alias yt-mp3="youtube-dl -ciwx -f best --audio-format mp3 --add-metadata -o '%(t
 alias yt-sync="yt-mp3 --download-archive '${YT_MUSIK}/archive.txt' -o '${YT-MUSIK}/%(playlist)s/%(title)s.%(ext)s' -a '${YT_MUSIK}/youtube.txt'"
 
 alias x='chmod u+x'
-
-if [ "$(tty)" = "/dev/tty1" ]; then
-	startx
-fi
